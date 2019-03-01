@@ -10,9 +10,10 @@ public class InliningController {
 
     @GetMapping("/html")
     public String getExampleHTML(Model model) {
-        model.addAttribute("title", "Baeldung");
+        model.addAttribute("title", "<b>Baeldung</b>");
         model.addAttribute("description", "<strong>Thymeleaf</strong> tutorial");
         return "inliningExample.html";
+//        return "inliningExample";
     }
 
     @GetMapping("/js")
