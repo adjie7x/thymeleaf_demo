@@ -3,6 +3,7 @@ package com.mitrais.thymeleaf_demo.config;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -22,27 +23,30 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan({"com.mitrais.thymeleaf_demo"})
-public class WebMVCConfig2 implements WebMvcConfigurer, ApplicationContextAware {
+//@Configuration
+//@EnableWebMvc
+//@ComponentScan({"com.mitrais.thymeleaf_demo"})
+public class WebMVCConfig2
+//        implements WebMvcConfigurer, ApplicationContextAware
+{
 
+//    @Autowired
     private ApplicationContext applicationContext;
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
+//    @Override
+//    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+//        this.applicationContext = applicationContext;
+//    }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**", "/css/**")
-                .addResourceLocations("/resources/","/css/");
-//              or  .addResourceLocations("/WEB-INF/resources/", "/WEB-INF/css/");
-
-        registry.addResourceHandler("/images/**")
-                .addResourceLocations("/images/");
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/resources/**", "/css/**")
+//                .addResourceLocations("/resources/","/css/");
+////              or  .addResourceLocations("/WEB-INF/resources/", "/WEB-INF/css/");
+//
+//        registry.addResourceHandler("/images/**")
+//                .addResourceLocations("/images/");
+//    }
 
     // 1. CREATE TEMPLATE RESOLVER
 
@@ -58,31 +62,31 @@ public class WebMVCConfig2 implements WebMvcConfigurer, ApplicationContextAware 
         return resolver;
     }
 
-    // Template Resolver for Javascript
-    private ITemplateResolver javascriptTemplateResolver(){
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("/WEB-INF/js/");
-        resolver.setCacheable(false);
-        resolver.setTemplateMode(TemplateMode.JAVASCRIPT);
-
-        return resolver;
-    }
-
-    // Template Resolver for Text
-    private ITemplateResolver plainTemplateResolver(){
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("/WEB-INF/txt/");
-        resolver.setCacheable(false);
-        resolver.setTemplateMode(TemplateMode.TEXT);
-
-        return resolver;
-    }
+//    // Template Resolver for Javascript
+//    private ITemplateResolver javascriptTemplateResolver(){
+//        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+//        resolver.setApplicationContext(applicationContext);
+//        resolver.setPrefix("/WEB-INF/js/");
+//        resolver.setCacheable(false);
+//        resolver.setTemplateMode(TemplateMode.JAVASCRIPT);
+//
+//        return resolver;
+//    }
+//
+//    // Template Resolver for Text
+//    private ITemplateResolver plainTemplateResolver(){
+//        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+//        resolver.setApplicationContext(applicationContext);
+//        resolver.setPrefix("/WEB-INF/txt/");
+//        resolver.setCacheable(false);
+//        resolver.setTemplateMode(TemplateMode.TEXT);
+//
+//        return resolver;
+//    }
 
     // 2. CREATE MESSAGE RESOLVER
-    @Bean
-    @Description("Spring Message Resolver")
+//    @Bean
+//    @Description("Spring Message Resolver")
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
@@ -90,22 +94,23 @@ public class WebMVCConfig2 implements WebMvcConfigurer, ApplicationContextAware 
     }
 
     // 3. CREATE TEMPLATE ENGINE RESOLVER
-    @Bean
-    public ISpringTemplateEngine templateEngine() {
+//    @Bean
+    public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.addDialect(new LayoutDialect(new GroupingStrategy()));
         engine.addDialect(new Java8TimeDialect());
-        engine.addTemplateResolver(htmlTemplateResolver());
-        engine.addTemplateResolver(javascriptTemplateResolver());
-        engine.addTemplateResolver(plainTemplateResolver());
+//        engine.addTemplateResolver(htmlTemplateResolver());
+//        engine.addTemplateResolver(javascriptTemplateResolver());
+//        engine.addTemplateResolver(plainTemplateResolver());
+        engine.setTemplateResolver(htmlTemplateResolver());
         engine.setTemplateEngineMessageSource(messageSource());
         return engine;
     }
 
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-        resolver.setTemplateEngine(templateEngine());
-        registry.viewResolver(resolver);
-    }
+//    @Override
+//    public void configureViewResolvers(ViewResolverRegistry registry) {
+//        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+//        resolver.setTemplateEngine(templateEngine());
+//        registry.viewResolver(resolver);
+//    }
 }
