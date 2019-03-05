@@ -133,6 +133,9 @@
 
 	<a href="details.html" th:href="@{order/{orderId}/details(orderId=1)}">view</a>
 	<a href="details.html" th:href="@{order/{orderId}(orderId=1)}">view</a>
+	<a href="details.html" th:href="@{order/{orderId}/detail(orderId=1,orderId2=2)}">view</a>
+	<a href="details.html" th:href="@{order/{orderId}/detail(pathVarOrderId=1,orderId=2)}">view</a>
+	<a href="details.html" th:href="@{order/{pathVarOrderId}/detail(pathVarOrderId=1,orderId=2)}">view</a>
 </body>
 </html>
 
