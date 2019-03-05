@@ -2,9 +2,12 @@ package com.mitrais.thymeleaf_demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import com.mitrais.thymeleaf_demo.model.Student;
+import com.mitrais.thymeleaf_demo.model.Task;
 import com.mitrais.thymeleaf_demo.utils.StudentUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -40,9 +44,24 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/listStudents", method = RequestMethod.GET)
-    public String listStudent(Model model) {
+    public String listStudent(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(name = "param1", required = false) String param1) {
 
         model.addAttribute("students", StudentUtils.buildStudents());
+        model.addAttribute("username", "aji");
+        model.addAttribute("lastname", "mulyadi");
+        model.addAttribute("welcomeMsgKey","welcome.message.parameterize");
+
+        request.setAttribute("nameReq","test");
+
+        Student student = new Student();
+        student.setId(1);
+        student.setName("Reno");
+        student.setGender('M');
+
+        Task task = new Task();
+        task.setStudent(student);
+
+        model.addAttribute("task",task);
 
         return "listStudents.html";
     }

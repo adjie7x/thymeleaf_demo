@@ -12,6 +12,8 @@ public class InliningController {
     public String getExampleHTML(Model model) {
         model.addAttribute("title", "<b>Baeldung</b>");
         model.addAttribute("description", "<strong>Thymeleaf</strong> tutorial");
+        model.addAttribute("username", "aji");
+        model.addAttribute("lastname", "mulyadi");
         return "inliningExample.html";
 //        return "inliningExample";
     }
@@ -28,6 +30,7 @@ public class InliningController {
 //                .getAuthentication().getName());
         model.addAttribute("username", "aji");
         model.addAttribute("students", StudentUtils.buildStudents());
+        model.addAttribute("lastname", "mulyadi");
         return "studentsList.txt";
     }
 
