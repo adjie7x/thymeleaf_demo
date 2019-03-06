@@ -2,6 +2,7 @@ package com.mitrais.thymeleaf_demo.config;
 
 import com.mitrais.thymeleaf_demo.formatter.NameFormatter;
 import com.mitrais.thymeleaf_demo.utils.ArrayUtil;
+import com.mitrais.thymeleaf_demo.utils.DateFormatter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
 import org.springframework.context.ApplicationContext;
@@ -184,6 +185,11 @@ public class WebMVCConfig implements WebMvcConfigurer, ApplicationContextAware{
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("lang");
         return localeChangeInterceptor;
+    }
+
+    @Bean(name = "dateFormatter")
+    public DateFormatter dateFormatter(){
+        return new DateFormatter();
     }
 
     @Override

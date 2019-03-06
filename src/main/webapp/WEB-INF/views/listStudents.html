@@ -118,9 +118,21 @@
 	</p>
 
 	<h1>Working with Preprocessing</h1>
-	<p th:text="${__#{article.text(${nameReq})}__}">bonjour</p>
+	<p th:with="i=#{retrievable.key}" th:text="${__#{article.text(i)}__}">bonjour</p>
+	<p th:text="${@translator.translateToFrench('morning')}">bonjour</p>
 
 	<h1 th:text="${#strings.capitalize('__#{retrievable.key}__')}">Text to be replaced</h1>
+
+	<h1>Working with STATIC METHOD</h1>
+	<p>
+		<span th:text="${'The application name is : '+T(com.mitrais.thymeleaf_demo.utils.ArrayUtil).APPLICATION_NAME}">The application name is : Test</span>
+		<span th:text="${'The application name is : '+T(com.mitrais.thymeleaf_demo.utils.ArrayUtil).getStr()}">The application name is : Test</span>
+	</p>
+
+	<h1>Working with Beans</h1>
+	<p>
+		<span th:text="${'Current date is : '+@dateFormatter.getCurrentDate()}">Current date is : 2012-04-14 17:30:00</span>
+	</p>
 
 	<h1>Student List</h1>
 	<table border="1">
