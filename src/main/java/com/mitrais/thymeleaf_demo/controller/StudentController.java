@@ -1,5 +1,7 @@
 package com.mitrais.thymeleaf_demo.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,11 +59,17 @@ public class StudentController {
         student.setId(1);
         student.setName("Reno");
         student.setGender('M');
+        student.setAge(20);
 
         Task task = new Task();
         task.setStudent(student);
 
         model.addAttribute("task",task);
+
+        Date date = new Date();
+        model.addAttribute("todayDate", date);
+
+        model.addAttribute("todayCalendar", Calendar.getInstance());
 
         return "listStudents.html";
     }

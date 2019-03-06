@@ -26,6 +26,26 @@ public class Student implements Serializable {
 
     private Float percentage;
 
+    private Integer age;
+
+    private Integer dependant;
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Integer getDependant() {
+        return dependant;
+    }
+
+    public void setDependant(Integer dependant) {
+        this.dependant = dependant;
+    }
+
     public Integer getId() {
         return id;
     }

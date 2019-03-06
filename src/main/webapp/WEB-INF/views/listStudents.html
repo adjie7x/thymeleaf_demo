@@ -88,6 +88,40 @@
 		<p>gender: <span th:text="*{gender}">-1</span>.</p>
 	</div>
 
+	<h1>Working with DATE</h1>
+	<p>
+		Today is: <span th:text="${#calendars.format(todayDate,'dd MMMM yyyy')}">13 May 2011</span>
+	</p>
+
+	<h1>Working with CALENDAR</h1>
+	<p>
+		Today is: <span th:text="${#calendars.format(todayCalendar,'dd MMMM yyyy')}">13 May 2011</span>
+	</p>
+
+	<h1>Working with Default Expressions</h1>
+	<div th:object="${task.student}">
+		...
+		<p>Age: <span th:text="*{age}?: '(no age specified)'">27</span>.</p>
+		<p>dependant: <span th:text="*{dependant}?: '(no dependant specified)'">27</span>.</p>
+	</div>
+
+	<h1>Working with The No-Operation token</h1>
+	<div th:object="${task.student}">
+		...
+		<p>Age: <span th:text="*{age}?: _">(no age specified)</span>.</p>
+		<p>dependant: <span th:text="*{dependant}?: _">(no dependant specified)</span>.</p>
+	</div>
+
+	<h1>Working with Data Conversion / Formatting</h1>
+	<p>
+		Today is: <span th:text="${{todayDate}}">13 May 2011</span>
+	</p>
+
+	<h1>Working with Preprocessing</h1>
+	<p th:text="${__#{article.text(${nameReq})}__}">bonjour</p>
+
+	<h1 th:text="${#strings.capitalize('__#{retrievable.key}__')}">Text to be replaced</h1>
+
 	<h1>Student List</h1>
 	<table border="1">
 		<thead>
