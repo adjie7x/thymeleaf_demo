@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragment Implementation</title>
+</head>
+<body>
+    <div th:insert="~{fragment/fr_footer.html :: copy}">&copy; 2011 The Static Templates</div>
+    <div th:insert="~{footer.html::copy}">&copy; 2011 The Static Templates</div>
+
+    <br>
+
+    <h1>Equals</h1>
+    <div th:insert="fragment/fr_footer.html :: (${username} == 'aji' ? copy1 : copy2)"></div>
+
+    <br>
+    <h1>Not Equals</h1>
+    <div th:insert="fragment/fr_footer.html :: (${username} != 'aji' ? copy1 : copy2)"></div>
+
+</body>
+</html>

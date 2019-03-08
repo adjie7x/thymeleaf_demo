@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscribe</title>
+</head>
+<body>
+
+    <h1>Subscribe 1</h1>
+    <form action="subscribe.html" th:attr="action=@{/subscribe},method=post">
+        <fieldset>
+            <input type="text" name="email" />
+            <input type="submit" value="Subscribe!" />
+        </fieldset>
+    </form>
+
+    <br>
+
+    <h1>Subscribe 2</h1>
+    <form th:action="@{/subscribe}">
+        <fieldset>
+            <input type="text" name="name" th:value="'aji'"/>
+            <input type="text" name="email" th:placeholder="'xx@gmail.com'"/>
+            <input type="submit" value="Subscribe!" />
+        </fieldset>
+    </form>
+
+    <input type="checkbox" name="option2" checked /> <!-- HTML -->
+    <input type="checkbox" name="option1" checked="checked" /> <!-- XHTML -->
+
+    <br>
+    <h1>Setting the value of any attribute</h1>
+    <span th:username="${username}">...</span>
+
+    <br>
+    <h1>Support for HTML5-friendly attribute and element names</h1>
+    <span data-th-text="${username}">...</span>
+
+    <br>
+
+    <table>
+        <tr>
+            <th th:text="#{msg.id}" />
+            <th th:text="#{msg.name}" />
+            <th th:welcomeMsgKeytext="#{msg.gender}" />
+            <th th:text="#{msg.percent}" />
+            <th th:text="index" />
+            <th th:text="count" />
+            <th th:text="first" />
+            <th th:text="last" />
+        </tr>
+        <tr th:each="student,iterStat : ${students}" th:class="${iterStat.odd}? 'odd'">
+            <td th:text="${student.id}" />
+            <td th:text="${student.name}" />
+            <td th:switch="${student.gender}"><span th:case="'M'"
+                                                    th:text="Male" /> <span th:case="'F'" th:text="Female" /></td>
+            <td th:text="${#conversions.convert(student.percentage, 'Integer')}" />
+            <td th:text="${iterStat.index}" />
+            <td th:text="${iterStat.count}" />
+            <td th:text="${iterStat.first}" />
+            <td th:text="${iterStat.last}" />
+        </tr>
+    </table>
+
+    <br>
+
+    <h1>Keeping iteration status</h1>
+    <table>
+        <tr>
+            <th th:text="#{msg.id}" />
+            <th th:text="#{msg.name}" />
+            <th th:welcomeMsgKeytext="#{msg.gender}" />
+            <th th:text="#{msg.percent}" />
+            <th th:text="index" />
+            <th th:text="count" />
+            <th th:text="first" />
+            <th th:text="last" />
+        </tr>
+        <tr th:each="student,iter : ${students}" th:class="${iter.odd}? 'odd'">
+            <td th:text="${student.id}" />
+            <td th:text="${student.name}" />
+            <td th:switch="${student.gender}"><span th:case="'M'"
+                                                    th:text="Male" /> <span th:case="'F'" th:text="Female" /></td>
+            <td th:text="${#conversions.convert(student.percentage, 'Integer')}" />
+            <td th:text="${iter.index}" />
+            <td th:text="${iter.count}" />
+            <td th:text="${iter.first}" />
+            <td th:text="${iter.last}" />
+        </tr>
+    </table>
+
+    <h1>If you don’t explicitly set a status variable, Thymeleaf will always create one for you by suffixing Stat to the name </h1>
+    <table>
+        <tr>
+            <th th:text="#{msg.id}" />
+            <th th:text="#{msg.name}" />
+            <th th:welcomeMsgKeytext="#{msg.gender}" />
+            <th th:text="#{msg.percent}" />
+            <th th:text="index" />
+            <th th:text="count" />
+            <th th:text="first" />
+            <th th:text="last" />
+        </tr>
+        <tr th:each="student : ${students}" th:class="${studentStat.odd}? 'odd'">
+            <td th:text="${student.id}" />
+            <td th:text="${student.name}" />
+            <td th:switch="${student.gender}"><span th:case="'M'"
+                                                    th:text="Male" /> <span th:case="'F'" th:text="Female" /></td>
+            <td th:text="${#conversions.convert(student.percentage, 'Integer')}" />
+            <td th:text="${studentStat.index}" />
+            <td th:text="${studentStat.count}" />
+            <td th:text="${studentStat.first}" />
+            <td th:text="${studentStat.last}" />
+        </tr>
+    </table>
+
+    <h1>Working with SWITCH CASE</h1>
+    <div th:switch="${username}">
+        <p th:case="'aji'">User is an administrator</p>
+        <p th:case="#{username.manager}">User is a manager</p>
+    </div>
+    <div th:switch="${username}">
+        <p th:case="'andi'">User is an administrator</p>
+        <p th:case="#{username.admin}">User is a admin</p>
+        <p th:case="*">User is some other thing(default)</p>
+    </div>
+
+</body>
+</html>
