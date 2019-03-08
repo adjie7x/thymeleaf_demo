@@ -12,6 +12,7 @@
 
     <h1>Equals</h1>
     <div th:insert="fragment/fr_footer.html :: (${username} == 'aji' ? copy1 : copy2)"></div>
+    <div th:insert="~{fragment/fr_footer.html :: (${username} == 'aji' ? copy1 : copy2)}"></div>
 
     <br>
     <h1>Not Equals</h1>
