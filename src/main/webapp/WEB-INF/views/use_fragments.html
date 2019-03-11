@@ -18,5 +18,36 @@
     <h1>Not Equals</h1>
     <div th:insert="fragment/fr_footer.html :: (${username} != 'aji' ? copy1 : copy2)"></div>
 
+    <br>
+    <h1>Using Selector</h1>
+    <div th:insert="fragment/fr_footer.html :: #copy3"></div>
+
+    <br>
+
+    <h1>Using th:insert</h1>
+    <div th:insert="fragment/fr_footer.html :: copy4"></div>
+
+    <h1>Using th:replace</h1>
+    <div th:replace="fragment/fr_footer.html :: copy4"></div>
+
+    <h1>Using th:include</h1>
+    <div th:include="fragment/fr_footer.html :: copy4"></div>
+
+    <h1>Parameterizable fragment signatures using arguments </h1>
+    <div th:replace="fragment/fr_footer.html::frag (${value1},${value2})">...</div>
+    <div th:replace="fragment/fr_footer.html::frag (onevar=${value1},twovar=${value2})">...</div>
+    <div th:replace="fragment/fr_footer.html::frag (twovar=${value2},onevar=${value1})">...</div>
+
+    <h1>Fragment local variables without fragment arguments</h1>
+    <div th:replace="fragment/fr_footer.html::fragnoargument (onevar=${value1},twovar=${value2})"></div>
+    <div th:replace="fragment/fr_footer.html::fragnoargument" th:with="onevar=${value1},twovar=${value2}"></div>
+
+    <h1>Assertion (exception if unfulfillment conditions)</h1>
+    <div th:assert="${onevar},(${twovar} != 43)">...</div>
+
+    <h1>Assertion in fragment (exception if unfulfillment conditions)</h1>
+    <div th:replace="fragment/fr_footer.html::contentfooter (${title})">...</div>
+
+
 </body>
 </html>

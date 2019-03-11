@@ -13,6 +13,11 @@ public class UseFragmentController {
     public String useFragmets(Model model){
 
         model.addAttribute("username", "aji");
+        model.addAttribute("value1", "value1");
+        model.addAttribute("value2", "value2");
+        model.addAttribute("onevar", "onevar");
+        model.addAttribute("twovar", 42);
+        model.addAttribute("title", "filled");
 
         return "use_fragments.html";
     }
