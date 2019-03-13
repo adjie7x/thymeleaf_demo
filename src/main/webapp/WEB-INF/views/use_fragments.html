@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Fragment Implementation</title>
+<head th:replace="fragment/fr_header.html :: common_header(~{::title},~{::link})">
+
+    <title>Awesome - Main</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/themes/smoothness/jquery-ui.css}">
+
 </head>
 <body>
     <div th:insert="~{fragment/fr_footer.html :: copy}">&copy; 2011 The Static Templates</div>
